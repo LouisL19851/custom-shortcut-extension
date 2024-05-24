@@ -1,0 +1,18 @@
+chrome.commands.onCommand.addListener((command) => {
+  console.log('Command received:', command); // 调试信息
+  if (command === "trigger-button") {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      chrome.scripting.executeScript({
+        target: {tabId: tabs[0].id},
+        function: triggerButton
+      }, () => {
+        console.log('Script executed'); // 调试信息
+      });
+    });
+  }
+});
+
+function triggerButton() {
+  console.log('Trigger button function executed'); // 调试信息
+  document.dispatchEvent(new CustomEvent('trigger-button-event'));
+}
