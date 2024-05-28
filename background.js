@@ -17,3 +17,21 @@ chrome.commands.onCommand.addListener((command) => {
     }
   }
 });
+
+// Add a context menu item
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: "goBack",
+    title: "Go Back",
+    contexts: ["all"]
+  });
+});
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId === "goBack") {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: () => window.history.back()
+    });
+  }
+});

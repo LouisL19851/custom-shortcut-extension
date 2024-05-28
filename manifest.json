@@ -5,7 +5,8 @@
   "description": "Bind a custom shortcut to a button on a webpage.",
   "permissions": [
     "activeTab",
-    "scripting"
+    "scripting",
+    "contextMenus"
   ],
   "background": {
     "service_worker": "background.js"
@@ -19,9 +20,9 @@
   "commands": {
     "toggle-extension": {
       "suggested_key": {
-        "default": "Ctrl+Shift+U"
+        "default": "Ctrl+Shift+Y"
       },
-      "description": "Toggle the extension on/off"
+      "description": "Toggle the extension"
     }
   }
 }
